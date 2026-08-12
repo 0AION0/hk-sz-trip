@@ -170,7 +170,7 @@
     </div>
   </div>
 
-  <!-- 互動腳本 (含雙幣別記帳功能) -->
+  <!-- 互動腳本 (含 LocalStorage 本地記憶儲存功能) -->
   <script>
     // Tab 切換
     function switchTab(tabId, element) {
@@ -182,57 +182,94 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // 雙幣別記帳邏輯
-    let totalHKD = 0;
-    let totalRMB = 0;
+    // ==========================================
+    // 記帳本與 LocalStorage 存檔邏輯
+    // ==========================================
+    let expenses = []; // 建立一個陣列來裝所有花費
+
+    // 1. 當網頁載入時，立刻從手機 LocalStorage 讀取資料
+    window.onload = function() {
+      const savedData = localStorage.getItem('hk_sz_expenses');
+      if (savedData) {
+        expenses = JSON.parse(savedData); // 將文字轉換回陣列
+        renderExpenses(); // 渲染畫面
+      }
+    }
     
+    // 2. 新增花費
     function addExpense() {
+      // 確保這些元素存在才執行
       const amtInput = document.getElementById('amt-input');
       const descInput = document.getElementById('desc-input');
-      const day = document.getElementById('day-input').value;
-      const currency = document.getElementById('currency-input').value;
+      const dayInput = document.getElementById('day-input');
+      const currencyInput = document.getElementById('currency-input');
       
+      if (!amtInput || !descInput || !dayInput || !currencyInput) return;
+
       const amt = parseFloat(amtInput.value);
       const desc = descInput.value;
+      const day = dayInput.value;
+      const currency = currencyInput.value;
       
       if (!amt || !desc) {
         alert('請輸入金額與項目內容！');
         return;
       }
 
-      let symbol = '';
-      
-      if (currency === 'HKD') {
-        totalHKD += amt;
-        document.getElementById('total-hkd').innerText = '總支出: HK$ ' + totalHKD.toLocaleString();
-        symbol = 'HK$';
-      } else {
-        totalRMB += amt;
-        document.getElementById('total-rmb').innerText = '總支出: ¥ ' + totalRMB.toLocaleString();
-        symbol = '¥';
-      }
+      // 將新資料打包並放進陣列的最前面 (unshift)
+      const symbol = currency === 'HKD' ? 'HK$' : '¥';
+      expenses.unshift({ day, desc, amt, currency, symbol });
 
-      const tbody = document.getElementById('expense-tbody');
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${day}</td>
-        <td>${desc}</td>
-        <td style="font-weight:bold; color:${currency === 'HKD' ? '#D81B60' : '#009688'};">${symbol} ${amt}</td>
-      `;
+      // 儲存到手機 LocalStorage
+      localStorage.setItem('hk_sz_expenses', JSON.stringify(expenses));
+
+      // 重新渲染畫面
+      renderExpenses();
       
-      tbody.prepend(tr);
-      
+      // 清空輸入框
       amtInput.value = '';
       descInput.value = '';
     }
 
+    // 3. 渲染畫面 (計算總計與印出表格)
+    function renderExpenses() {
+      let totalHKD = 0;
+      let totalRMB = 0;
+      const tbody = document.getElementById('expense-tbody');
+      if (!tbody) return; // 如果尚未載入，則跳過
+      
+      tbody.innerHTML = ''; // 先清空舊表格
+
+      // 逐筆讀取並印出
+      expenses.forEach(item => {
+        // 分別加總
+        if (item.currency === 'HKD') {
+          totalHKD += item.amt;
+        } else {
+          totalRMB += item.amt;
+        }
+
+        // 產生表格行
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${item.day}</td>
+          <td>${item.desc}</td>
+          <td style="font-weight:bold; color:${item.currency === 'HKD' ? '#D81B60' : '#009688'};">${item.symbol} ${item.amt}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // 更新畫面的總計數字
+      document.getElementById('total-hkd').innerText = '總支出: HK$ ' + totalHKD.toLocaleString();
+      document.getElementById('total-rmb').innerText = '總支出: ¥ ' + totalRMB.toLocaleString();
+    }
+
+    // 4. 清除所有紀錄
     function clearExpenses() {
-      if (confirm('確定要清除所有的記帳資料嗎？')) {
-        totalHKD = 0;
-        totalRMB = 0;
-        document.getElementById('total-hkd').innerText = '總支出: HK$ 0';
-        document.getElementById('total-rmb').innerText = '總支出: ¥ 0';
-        document.getElementById('expense-tbody').innerHTML = '';
+      if (confirm('確定要清除所有的記帳資料嗎？(此動作無法復原)')) {
+        expenses = []; // 清空陣列
+        localStorage.removeItem('hk_sz_expenses'); // 刪除手機存檔
+        renderExpenses(); // 重新渲染(變空白)
       }
     }
   </script>
