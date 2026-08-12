@@ -6,13 +6,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="港深大冒險">
-  <title>港深大冒險 | 究極攻略</title>
+  <title>港深大冒險</title>
   
   <!-- 引入 FontAwesome 圖示 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
-    /* 復刻粉紫溫馨色系 */
     :root {
       --bg-color: #F8F1FA; 
       --card-bg: #FFFFFF;
@@ -74,10 +73,13 @@
     .step-info { font-size: 13px; color: var(--text-sub); display: flex; align-items: center; gap: 6px; }
 
     /* 記帳本輸入區 */
-    .budget-input { width: 100%; padding: 10px; border: 1px solid #CCC; border-radius: 8px; margin-bottom: 10px; font-size: 15px; background: #FAFAFA; }
+    .budget-input { width: 100%; padding: 10px; border: 1px solid #CCC; border-radius: 8px; margin-bottom: 12px; font-size: 15px; background: #FAFAFA; }
+    select.budget-input { appearance: none; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="%238C52FF" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>'); background-repeat: no-repeat; background-position: calc(100% - 15px) center; }
     .budget-btn { width: 100%; background: var(--btn-gradient); color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: bold; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(140,82,255,0.2); }
     .expense-list { border-top: 1px dashed var(--border-light); padding-top: 15px; }
-    .expense-item { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 15px; align-items: center;}
+    .expense-item { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 15px; align-items: center; border-bottom: 1px solid #F5F5F5; padding-bottom: 8px;}
+    .expense-info { display: flex; flex-direction: column; gap: 4px; }
+    .day-badge { font-size: 11px; color: var(--primary); background: #E6E0FA; padding: 2px 8px; border-radius: 12px; width: fit-content; font-weight: bold; }
     .total-cost { color: var(--accent-pink); font-size: 26px; font-weight: bold; margin-top: 5px; }
 
     /* 底部導覽列 */
@@ -95,7 +97,7 @@
 <body>
 
   <header>
-    <div class="subtitle">台胞證準備版 | 究極攻略</div>
+    <div class="subtitle">台胞證準備版</div>
     <div class="title"><i class="fa-solid fa-plane-departure" style="color: var(--accent-pink);"></i> 港深五日大冒險</div>
   </header>
 
@@ -165,6 +167,15 @@
     <div class="card">
       <div class="card-header"><i class="fa-solid fa-wallet"></i> 旅遊記帳本</div>
       
+      <div style="margin-bottom: 5px; font-size:14px; font-weight:bold;">日期 (Day)</div>
+      <select id="day-input" class="budget-input">
+        <option value="D1 (8/31)">D1 - 8/31 (香港)</option>
+        <option value="D2 (9/1)">D2 - 9/1 (深圳)</option>
+        <option value="D3 (9/2)">D3 - 9/2 (深圳)</option>
+        <option value="D4 (9/3)">D4 - 9/3 (深圳)</option>
+        <option value="D5 (9/4)">D5 - 9/4 (回程)</option>
+      </select>
+
       <div style="margin-bottom: 5px; font-size:14px; font-weight:bold;">金額 (Amount)</div>
       <input type="number" id="amt-input" class="budget-input" placeholder="例：45">
       
@@ -296,6 +307,7 @@
     // 簡易記帳邏輯
     let total = 0;
     function addExpense() {
+      const day = document.getElementById('day-input').value; // 取得選擇的日期
       const amt = parseFloat(document.getElementById('amt-input').value);
       const desc = document.getElementById('desc-input').value;
       
@@ -306,11 +318,19 @@
 
       const item = document.createElement('div');
       item.className = 'expense-item';
-      item.innerHTML = `<span><i class="fa-solid fa-tag" style="color:#E6E0FA; margin-right:5px;"></i> ${desc}</span><span style="color:var(--primary); font-weight:bold;">${amt}</span>`;
+      
+      // 更新花費清單的 HTML，加入日期標籤
+      item.innerHTML = `
+        <div class="expense-info">
+          <span class="day-badge">${day}</span>
+          <span><i class="fa-solid fa-tag" style="color:#E6E0FA; margin-right:5px;"></i> ${desc}</span>
+        </div>
+        <span style="color:var(--primary); font-weight:bold;">${amt}</span>
+      `;
       
       document.getElementById('expense-container').prepend(item);
       
-      // 清空輸入框
+      // 清空輸入框（保留選擇的日期，方便連續輸入同一天的消費）
       document.getElementById('amt-input').value = '';
       document.getElementById('desc-input').value = '';
     }
