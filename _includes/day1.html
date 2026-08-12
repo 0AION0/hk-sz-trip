@@ -1,14 +1,74 @@
+<!-- 檢查表 (粉紅邊框) -->
 <div class="card border-pink">
   <div class="card-header" style="color: #D81B60;"><i class="fa-solid fa-bag-shopping" style="color: #F06292;"></i> 今日隨身包檢查</div>
   <div style="font-size: 15px;">
-    <label style="display:block; margin-bottom:12px;"><input type="checkbox" style="accent-color:var(--accent-pink); width:18px; height:18px; vertical-align:middle; margin-right:8px;"> 護照 & 台胞證 (過關必備)</label>
-    <label style="display:block; margin-bottom:12px;"><input type="checkbox" style="accent-color:var(--accent-pink); width:18px; height:18px; vertical-align:middle; margin-right:8px;"> 手機 (確認 Apple Pay 已綁卡)</label>
-    <label style="display:block; margin-bottom:0;"><input type="checkbox" style="accent-color:var(--accent-pink); width:18px; height:18px; vertical-align:middle; margin-right:8px;"> 行動電源</label>
+    <label style="display:block; margin-bottom:12px;"><input type="checkbox" style="accent-color:var(--accent-pink); width:18px; height:18px; vertical-align:middle; margin-right:8px;"> 護照 & 台胞證 (過境深圳必備！)</label>
+    <label style="display:block; margin-bottom:12px;"><input type="checkbox" style="accent-color:var(--accent-pink); width:18px; height:18px; vertical-align:middle; margin-right:8px;"> 手機 (確認 Apple Pay 已綁卡，當八達通刷)</label>
+    <label style="display:block; margin-bottom:0;"><input type="checkbox" style="accent-color:var(--accent-pink); width:18px; height:18px; vertical-align:middle; margin-right:8px;"> 行動電源 (拍照、導航超耗電)</label>
   </div>
 </div>
 
+<!-- 行程路線 (薄荷綠邊框) -->
 <div class="card border-green">
   <div class="timeline-time" style="background:#E8F5E9; color:#2E7D32;">11:45 - 14:00</div>
-  <h3 style="margin:0 0 15px; font-size:16px;">抵達與市區移動</h3>
-  <!-- 裡面接續放原本 D1 的天橋與巴士路線... -->
+  <h3 style="margin:0 0 15px; font-size:16px;">抵達與市區移動 (詳細導航)</h3>
+  <div class="route-box" style="border-color:#C8E6C9;">
+    <div class="route-step">
+      <div class="step-num" style="border-color:#4CAF50; color:#4CAF50;">1</div>
+      <div class="step-content">
+        <h4>香港機場 ➔ 怡和大廈</h4>
+        <div class="step-info"><i class="fa-solid fa-bus" style="color:#FF9800;"></i> 城巴 A11 線</div>
+        <div class="step-info"><i class="fa-regular fa-clock"></i> 乘車約 45 分 / <i class="fa-brands fa-apple"></i> HK$ 45</div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="step-num" style="border-color:#4CAF50; color:#4CAF50;">2</div>
+      <div class="step-content">
+        <h4>怡和大廈 ➔ 環球大廈</h4>
+        <div class="step-info"><i class="fa-solid fa-person-walking" style="color:#4CAF50;"></i> 沿天橋步行</div>
+        <div class="step-info">約 2-3 分鐘 (全天橋免淋雨)</div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="step-num" style="border-color:#4CAF50; color:#4CAF50;">3</div>
+      <div class="step-content">
+        <h4>放行李 (Bounce 寄存)</h4>
+        <div class="step-info">出示預約條碼，兩手空空出發！</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 下午行程 (活力橘色邊框) -->
+<div class="card" style="border-color: #FFB74D;">
+  <div class="timeline-time" style="background:#FFF3E0; color:#E65100;">14:00 - 20:00</div>
+  <h3 style="margin:0 0 10px; font-size:16px;">香港精華半日遊</h3>
+  
+  <p style="font-size:14px; margin-bottom:5px; color:#E65100; font-weight:bold;">📍 路線 A：中環老街與太平山</p>
+  <ul style="font-size:14px; padding-left:20px; color:var(--text-sub); margin-bottom:15px; line-height:1.6;">
+    <li>半山自動扶梯 / 大館漫步拍照</li>
+    <li>Bakehouse 買超人氣酸種蛋撻</li>
+    <li>傍晚搭乘「山頂纜車」賞日落與百萬夜景</li>
+  </ul>
+  
+  <p style="font-size:14px; margin-bottom:5px; color:#E65100; font-weight:bold;">📍 路線 B：維港海景與星光大道</p>
+  <ul style="font-size:14px; padding-left:20px; color:var(--text-sub); margin-bottom:0; line-height:1.6;">
+    <li>至中環碼頭搭乘百年「天星小輪」</li>
+    <li>尖沙咀海濱長廊 / 星光大道散步</li>
+    <li>晚上 20:00 觀賞「幻彩詠香江」燈光秀</li>
+  </ul>
+</div>
+
+<!-- 晚上過關 (夜幕紫邊框) -->
+<div class="card border-purple">
+  <div class="timeline-time" style="background:#F3E5F5; color:#6A1B9A;">20:00 (預計)</div>
+  <h3 style="margin:0 0 15px; font-size:16px;">回飯店休息 (過境深圳)</h3>
+  <div class="route-box" style="background:#FAFAFA; border-color:#E1BEE7;">
+    <p style="font-size:14px; margin:0 0 10px; line-height:1.8;">
+      <b>1. 取行李：</b>回到中環環球大廈取件。<br>
+      <b>2. 進地鐵：</b>走進「中環站 A 出口」，站內連通道走到「金鐘站」。<br>
+      <b>3. 搭東鐵：</b>轉乘東鐵線（淺藍色），一路搭到終點站「羅湖」。<br>
+      <b>4. 過海關：</b>準備好<b>台胞證</b>，跟著指標走即可順利入境深圳！
+    </p>
+  </div>
 </div>
