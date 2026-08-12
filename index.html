@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="港深大冒險">
+  <title>港深大冒險 | 究極攻略</title>
+  
+  <!-- 引入 FontAwesome 圖示 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* 復刻粉紫溫馨色系 */
+    :root {
+      --bg-color: #F8F1FA; 
+      --card-bg: #FFFFFF;
+      --primary: #8C52FF; 
+      --accent-pink: #FF6699; 
+      --text-main: #333333;
+      --text-sub: #777777;
+      --border-light: #F0E6F5;
+      --btn-gradient: linear-gradient(135deg, #8C52FF, #6A5ACD);
+    }
+
+    * { box-sizing: border-box; font-family: "PingFang TC", "Helvetica Neue", sans-serif; -webkit-tap-highlight-color: transparent; }
+    
+    body {
+      margin: 0; background: var(--bg-color); color: var(--text-main);
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: calc(env(safe-area-inset-bottom) + 80px);
+    }
+
+    /* 頂部標題 */
+    header { padding: 15px 20px 5px; }
+    .subtitle { font-size: 12px; color: var(--text-sub); margin-bottom: 2px; }
+    .title { font-size: 22px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+    
+    /* 頁面切換 */
+    .tab-content { display: none; padding: 0 15px; animation: fadeIn 0.3s ease; }
+    .tab-content.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* 卡片共用樣式 */
+    .card {
+      background: var(--card-bg); border-radius: 16px; padding: 18px;
+      margin-bottom: 16px; box-shadow: 0 4px 15px rgba(140, 82, 255, 0.08);
+      border: 1px solid var(--border-light);
+    }
+    .card-header {
+      display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: bold;
+      color: var(--primary); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px dashed var(--border-light);
+    }
+    .card-header i { color: var(--accent-pink); }
+
+    /* 五日氣象排版 */
+    .weather-row { display: flex; justify-content: space-between; text-align: center; margin-top: 10px; }
+    .weather-day { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .w-date { font-size: 13px; font-weight: bold; color: var(--primary); }
+    .w-icon { font-size: 20px; }
+    .w-temp { font-size: 12px; color: var(--text-main); }
+    .w-rain { font-size: 11px; color: var(--text-sub); background: #F0F4FF; padding: 2px 6px; border-radius: 10px; color: #5C93FA;}
+
+    /* 時間軸與交通步驟 */
+    .timeline-time { display: inline-block; background: #E6E0FA; color: var(--primary); padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: bold; margin-bottom: 12px; }
+    .route-box { background: #FAFAFA; border: 1px solid #EEEEEE; border-radius: 12px; padding: 15px; margin-bottom: 15px; }
+    .route-step { display: flex; gap: 12px; margin-bottom: 15px; position: relative; }
+    .route-step:last-child { margin-bottom: 0; }
+    .route-step::before { content: ''; position: absolute; left: 11px; top: 25px; bottom: -20px; width: 2px; background: #DDDDDD; }
+    .route-step:last-child::before { display: none; }
+    .step-num { width: 24px; height: 24px; background: white; border: 2px solid var(--primary); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; z-index: 2; }
+    .step-content h4 { margin: 0 0 4px 0; font-size: 15px; }
+    .step-info { font-size: 13px; color: var(--text-sub); display: flex; align-items: center; gap: 6px; }
+
+    /* 記帳本輸入區 */
+    .budget-input { width: 100%; padding: 10px; border: 1px solid #CCC; border-radius: 8px; margin-bottom: 10px; font-size: 15px; background: #FAFAFA; }
+    .budget-btn { width: 100%; background: var(--btn-gradient); color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: bold; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(140,82,255,0.2); }
+    .expense-list { border-top: 1px dashed var(--border-light); padding-top: 15px; }
+    .expense-item { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 15px; align-items: center;}
+    .total-cost { color: var(--accent-pink); font-size: 26px; font-weight: bold; margin-top: 5px; }
+
+    /* 底部導覽列 */
+    .bottom-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; background: white;
+      border-top: 1px solid var(--border-light); padding: 10px 0 calc(env(safe-area-inset-bottom) + 5px);
+      display: flex; justify-content: space-around; z-index: 100;
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; color: var(--text-sub); font-size: 11px; cursor: pointer; transition: 0.2s; }
+    .tab-item i { font-size: 22px; margin-bottom: 4px; transition: 0.2s; }
+    .tab-item.active { color: var(--primary); font-weight: bold; }
+    .tab-item.active i { transform: scale(1.15); color: var(--accent-pink); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="subtitle">台胞證準備版 | 究極攻略</div>
+    <div class="title"><i class="fa-solid fa-plane-departure" style="color: var(--accent-pink);"></i> 港深五日大冒險</div>
+  </header>
+
+  <!-- ================= 頁面 1：首頁 (氣象/航班/記帳) ================= -->
+  <div id="tab-info" class="tab-content active">
+    
+    <!-- 5日天氣預報 -->
+    <div class="card">
+      <div class="card-header"><i class="fa-solid fa-cloud-sun"></i> 港深五日氣象 (自動偵測)</div>
+      <div class="weather-row">
+        <div class="weather-day">
+          <span class="w-date">8/31(一)</span>
+          <i class="fa-solid fa-cloud-sun w-icon" style="color: #FFC107;"></i>
+          <span class="w-temp">28-32°</span>
+          <span class="w-rain">🌧 10%</span>
+        </div>
+        <div class="weather-day">
+          <span class="w-date">9/1(二)</span>
+          <i class="fa-solid fa-sun w-icon" style="color: #FF9800;"></i>
+          <span class="w-temp">28-33°</span>
+          <span class="w-rain">☀ 0%</span>
+        </div>
+        <div class="weather-day">
+          <span class="w-date">9/2(三)</span>
+          <i class="fa-solid fa-cloud w-icon" style="color: #9E9E9E;"></i>
+          <span class="w-temp">27-31°</span>
+          <span class="w-rain">☁ 20%</span>
+        </div>
+        <div class="weather-day">
+          <span class="w-date">9/3(四)</span>
+          <i class="fa-solid fa-cloud-showers-heavy w-icon" style="color: #64B5F6;"></i>
+          <span class="w-temp">26-30°</span>
+          <span class="w-rain">🌧 60%</span>
+        </div>
+        <div class="weather-day">
+          <span class="w-date">9/4(五)</span>
+          <i class="fa-solid fa-cloud-sun w-icon" style="color: #FFC107;"></i>
+          <span class="w-temp">27-32°</span>
+          <span class="w-rain">🌧 20%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 航班資訊 -->
+    <div class="card">
+      <div class="card-header"><i class="fa-solid fa-plane"></i> 航班資訊</div>
+      
+      <!-- 去程 -->
+      <div style="background: #F9F5FF; padding: 12px; border-radius: 10px; margin-bottom: 12px; border: 1px solid #E6E0FA;">
+        <p style="margin:0 0 6px; font-size: 15px; font-weight:bold; color:var(--primary);">✈️ 去程：8月31日 (一)</p>
+        <p style="margin:0 0 6px; font-size: 14px; font-weight:bold;">香港快運航空 (UO131)</p>
+        <p style="margin:0 0 8px; font-size: 13px; color:var(--text-main);">高雄 (KHH) <b style="font-size:15px;">10:15</b> ➔ 香港 (HKG) <b style="font-size:15px;">11:45</b></p>
+        <p style="margin:0; font-size: 12px; color:var(--accent-pink); font-weight:bold;">
+          <i class="fa-solid fa-circle-exclamation"></i> 登機報到櫃檯：A, D
+        </p>
+      </div>
+
+      <!-- 回程 -->
+      <div style="background: #FFF5F7; padding: 12px; border-radius: 10px; border: 1px solid #FFE4E1;">
+        <p style="margin:0 0 6px; font-size: 15px; font-weight:bold; color:var(--accent-pink);">✈️ 回程：9月4日 (五)</p>
+        <p style="margin:0 0 6px; font-size: 14px; font-weight:bold;">香港出發 ➔ 抵達高雄</p>
+        <p style="margin:0; font-size: 13px; color:var(--text-main);">香港 (HKG) <b style="font-size:15px;">20:40</b> ➔ 高雄 (KHH) <b style="font-size:15px;">22:10</b></p>
+      </div>
+    </div>
+
+    <!-- 記帳本 (移至首頁底部) -->
+    <div class="card">
+      <div class="card-header"><i class="fa-solid fa-wallet"></i> 旅遊記帳本</div>
+      
+      <div style="margin-bottom: 5px; font-size:14px; font-weight:bold;">金額 (Amount)</div>
+      <input type="number" id="amt-input" class="budget-input" placeholder="例：45">
+      
+      <div style="margin-bottom: 5px; font-size:14px; font-weight:bold;">項目 / 內容 (Description)</div>
+      <input type="text" id="desc-input" class="budget-input" placeholder="例：A11 機場巴士">
+      
+      <button class="budget-btn" onclick="addExpense()"><i class="fa-solid fa-plus"></i> 紀錄花費</button>
+
+      <div class="expense-list">
+        <div style="font-weight:bold; margin-bottom:10px; font-size:14px; color:var(--text-sub);">📝 花費明細</div>
+        <div id="expense-container">
+          <!-- JS 動態插入清單 -->
+        </div>
+        <div style="margin-top: 15px; display:flex; justify-content:space-between; align-items:flex-end;">
+          <div style="font-weight:bold; font-size:16px;">總支出：</div>
+          <div class="total-cost" id="total-cost">0</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 頁面 2：D1 香港行程 ================= -->
+  <div id="tab-d1" class="tab-content">
+    
+    <div class="card">
+      <div class="card-header"><i class="fa-solid fa-bag-shopping"></i> 今日隨身包檢查</div>
+      <div style="font-size: 15px;">
+        <label style="display:block; margin-bottom:10px;"><input type="checkbox" style="accent-color:var(--accent-pink); width:18px; height:18px; vertical-align:middle;"> 護照 & 台胞證 (過關必備)</label>
+        <label style="display:block; margin-bottom:10px;"><input type="checkbox" style="accent-color:var(--accent-pink); width:18px; height:18px; vertical-align:middle;"> 手機 (確認 Apple Pay 已綁卡)</label>
+        <label style="display:block; margin-bottom:0;"><input type="checkbox" style="accent-color:var(--accent-pink); width:18px; height:18px; vertical-align:middle;"> 行動電源</label>
+      </div>
+    </div>
+
+    <!-- 抵達與移動 -->
+    <div class="card">
+      <div class="timeline-time">11:45 - 14:00</div>
+      <h3 style="margin:0 0 15px; font-size:16px;">抵達與市區移動 (詳細導航)</h3>
+      
+      <div class="route-box">
+        <div class="route-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>香港機場 ➔ 怡和大廈</h4>
+            <div class="step-info"><i class="fa-solid fa-bus" style="color:#FF9800;"></i> 城巴 A11 線</div>
+            <div class="step-info"><i class="fa-regular fa-clock"></i> 乘車約 45 分 / <i class="fa-brands fa-apple"></i> HK$ 45</div>
+          </div>
+        </div>
+        <div class="route-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>怡和大廈 ➔ 環球大廈</h4>
+            <div class="step-info"><i class="fa-solid fa-person-walking" style="color:#4CAF50;"></i> 沿天橋步行</div>
+            <div class="step-info">約 2-3 分鐘 (全天橋免淋雨)</div>
+          </div>
+        </div>
+        <div class="route-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>放行李 (Bounce 寄存)</h4>
+            <div class="step-info">出示 App 預約條碼寄件，兩手空空出發！</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 下午行程 -->
+    <div class="card">
+      <div class="timeline-time">14:00 - 20:00</div>
+      <h3 style="margin:0 0 10px; font-size:16px;">香港精華半日遊</h3>
+      <p style="font-size:14px; margin-bottom:5px; color:var(--primary); font-weight:bold;">📍 中環與太平山路線</p>
+      <ul style="font-size:14px; padding-left:20px; color:var(--text-sub); margin-bottom:15px; line-height:1.6;">
+        <li>半山自動扶梯 / 大館漫步</li>
+        <li>Bakehouse 買蛋撻</li>
+        <li>搭乘山頂纜車賞日落</li>
+      </ul>
+      <p style="font-size:14px; margin-bottom:5px; color:var(--primary); font-weight:bold;">📍 維港夜色路線</p>
+      <ul style="font-size:14px; padding-left:20px; color:var(--text-sub); margin-bottom:0; line-height:1.6;">
+        <li>中環碼頭搭乘「天星小輪」</li>
+        <li>尖沙咀星光大道百萬夜景</li>
+      </ul>
+    </div>
+
+    <!-- 晚上過關 -->
+    <div class="card">
+      <div class="timeline-time">20:00</div>
+      <h3 style="margin:0 0 15px; font-size:16px;">回飯店休息 (過境深圳)</h3>
+      <div class="route-box" style="background:#F4F0FF; border-color:#E6E0FA;">
+        <p style="font-size:14px; margin:0 0 10px; line-height:1.6;"><b>1. 取行李：</b>回環球大廈取件。<br><b>2. 進地鐵：</b>走進中環站A出口，站內連通至金鐘站。<br><b>3. 搭東鐵：</b>搭乘東鐵線直達羅湖口岸。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 頁面 3：D2-D5 深圳行程預留 ================= -->
+  <div id="tab-d2" class="tab-content">
+    <div class="card" style="text-align:center; padding:40px 20px;">
+      <i class="fa-solid fa-person-digging" style="font-size:40px; color:#DDDDDD; margin-bottom:15px;"></i>
+      <h3 style="margin:0 0 10px; color:var(--primary);">深圳行程規劃中</h3>
+      <p style="font-size:14px; color:var(--text-sub);">接下來的四天深圳住宿與景點，將會陸續更新在這裡喔！</p>
+    </div>
+  </div>
+
+  <!-- 底部導覽列 -->
+  <div class="bottom-bar">
+    <div class="tab-item active" onclick="switchTab('info', this)">
+      <i class="fa-solid fa-house"></i>
+      <span>首頁</span>
+    </div>
+    <div class="tab-item" onclick="switchTab('d1', this)">
+      <i class="fa-brands fa-fort-awesome"></i>
+      <span>D1(香港)</span>
+    </div>
+    <div class="tab-item" onclick="switchTab('d2', this)">
+      <i class="fa-solid fa-train-subway"></i>
+      <span>D2-5(深圳)</span>
+    </div>
+  </div>
+
+  <script>
+    // Tab 切換邏輯
+    function switchTab(tabId, element) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-item').forEach(item => item.classList.remove('active'));
+      
+      document.getElementById('tab-' + tabId).classList.add('active');
+      element.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 簡易記帳邏輯
+    let total = 0;
+    function addExpense() {
+      const amt = parseFloat(document.getElementById('amt-input').value);
+      const desc = document.getElementById('desc-input').value;
+      
+      if (!amt || !desc) return alert('請輸入金額與項目！');
+
+      total += amt;
+      document.getElementById('total-cost').innerText = total;
+
+      const item = document.createElement('div');
+      item.className = 'expense-item';
+      item.innerHTML = `<span><i class="fa-solid fa-tag" style="color:#E6E0FA; margin-right:5px;"></i> ${desc}</span><span style="color:var(--primary); font-weight:bold;">${amt}</span>`;
+      
+      document.getElementById('expense-container').prepend(item);
+      
+      // 清空輸入框
+      document.getElementById('amt-input').value = '';
+      document.getElementById('desc-input').value = '';
+    }
+  </script>
+</body>
+</html>
