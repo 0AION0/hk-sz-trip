@@ -24,20 +24,11 @@
       <div class="step-num" style="border-color:#4CAF50; color:#4CAF50;">2</div>
       <div class="step-content">
         <h4>前往上環 Bounce 寄存點</h4>
-        <div class="step-info" style="margin-bottom: 6px;"><i class="fa-solid fa-location-dot" style="color:#E53935;"></i> 港鐵上環站附近據點</div>
+        <div class="step-info" style="margin-bottom: 8px;"><i class="fa-solid fa-location-dot" style="color:#E53935;"></i> 港鐵上環站附近據點</div>
         
-        <!-- 地圖按鈕組 -->
-        <div style="display:flex; gap:6px; flex-wrap:wrap;">
-          <a href="https://www.google.com/maps/search/?api=1&query=Sheung+Wan+Station+Hong+Kong" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#4285F4; color:white; padding:4px 8px; border-radius:4px; text-decoration:none; font-size:11px; font-weight:bold;">
-            <i class="fa-solid fa-map-location-dot"></i> Google
-          </a>
-          <a href="https://uri.amap.com/marker?keywords=港鐵上環站" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#00A2FF; color:white; padding:4px 8px; border-radius:4px; text-decoration:none; font-size:11px; font-weight:bold;">
-            <i class="fa-solid fa-location-arrow"></i> 高德
-          </a>
-          <a href="https://maps.apple.com/?q=Sheung+Wan+Station+Hong+Kong" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#333333; color:white; padding:4px 8px; border-radius:4px; text-decoration:none; font-size:11px; font-weight:bold;">
-            <i class="fa-brands fa-apple"></i> Apple
-          </a>
-        </div>
+        <button onclick="openMapModal('https://www.google.com/maps/search/?api=1&query=Sheung+Wan+Station+Hong+Kong', 'https://uri.amap.com/marker?keywords=港鐵上環站', 'https://maps.apple.com/?q=Sheung+Wan+Station+Hong+Kong')" style="display:inline-flex; align-items:center; gap:6px; background:#4285F4; color:white; padding:6px 12px; border-radius:6px; border:none; font-size:13px; font-weight:bold; cursor:pointer;">
+          <i class="fa-solid fa-map-location-dot"></i> 開啟地圖導航
+        </button>
       </div>
     </div>
   </div>
@@ -55,18 +46,10 @@
       <div class="step-num" style="border-color:#FB8C00; color:#FB8C00;">1</div>
       <div class="step-content">
         <h4>14:00 - 15:30 半山自動扶梯 & 大館</h4>
-        <div class="step-info" style="margin-bottom: 6px;"><i class="fa-solid fa-camera"></i> 體驗戶外長扶梯、漫步百年古蹟</div>
-        <div style="display:flex; gap:6px; flex-wrap:wrap;">
-          <a href="https://www.google.com/maps/search/?api=1&query=Tai+Kwun+Hong+Kong" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#4285F4; color:white; padding:4px 8px; border-radius:4px; text-decoration:none; font-size:11px; font-weight:bold;">
-            <i class="fa-solid fa-map-location-dot"></i> Google
-          </a>
-          <a href="https://uri.amap.com/marker?keywords=大館" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#00A2FF; color:white; padding:4px 8px; border-radius:4px; text-decoration:none; font-size:11px; font-weight:bold;">
-            <i class="fa-solid fa-location-arrow"></i> 高德
-          </a>
-          <a href="https://maps.apple.com/?q=Tai+Kwun+Hong+Kong" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#333333; color:white; padding:4px 8px; border-radius:4px; text-decoration:none; font-size:11px; font-weight:bold;">
-            <i class="fa-brands fa-apple"></i> Apple
-          </a>
-        </div>
+        <div class="step-info" style="margin-bottom: 8px;"><i class="fa-solid fa-camera"></i> 體驗戶外長扶梯、漫步百年古蹟</div>
+        <button onclick="openMapModal('https://www.google.com/maps/search/?api=1&query=Tai+Kwun+Hong+Kong', 'https://uri.amap.com/marker?keywords=大館', 'https://maps.apple.com/?q=Tai+Kwun+Hong+Kong')" style="display:inline-flex; align-items:center; gap:6px; background:#4285F4; color:white; padding:6px 12px; border-radius:6px; border:none; font-size:13px; font-weight:bold; cursor:pointer;">
+          <i class="fa-solid fa-map-location-dot"></i> 開啟地圖導航
+        </button>
       </div>
     </div>
 
@@ -75,18 +58,10 @@
       <div class="step-num" style="border-color:#FB8C00; color:#FB8C00;">2</div>
       <div class="step-content">
         <h4>15:30 - 17:30 Bakehouse 蛋撻</h4>
-        <div class="step-info" style="margin-bottom: 6px;"><i class="fa-solid fa-utensils"></i> 中環排隊名店：超人氣酸種蛋撻</div>
-        <div style="display:flex; gap:6px; flex-wrap:wrap;">
-          <a href="https://www.google.com/maps/search/?api=1&query=Bakehouse+Central+Hong+Kong" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#4285F4; color:white; padding:4px 8px; border-radius:4px; text-decoration:none; font-size:11px; font-weight:bold;">
-            <i class="fa-solid fa-map-location-dot"></i> Google
-          </a>
-          <a href="https://uri.amap.com/marker?keywords=Bakehouse(中環店)" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#00A2FF; color:white; padding:4px 8px; border-radius:4px; text-decoration:none; font-size:11px; font-weight:bold;">
-            <i class="fa-solid fa-location-arrow"></i> 高德
-          </a>
-          <a href="https://maps.apple.com/?q=Bakehouse+Central+Hong+Kong" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#333333; color:white; padding:4px 8px; border-radius:4px; text-decoration:none; font-size:11px; font-weight:bold;">
-            <i class="fa-brands fa-apple"></i> Apple
-          </a>
-        </div>
+        <div class="step-info" style="margin-bottom: 8px;"><i class="fa-solid fa-utensils"></i> 中環排隊名店：超人氣酸種蛋撻</div>
+        <button onclick="openMapModal('https://www.google.com/maps/search/?api=1&query=Bakehouse+Central+Hong+Kong', 'https://uri.amap.com/marker?keywords=Bakehouse(中環店)', 'https://maps.apple.com/?q=Bakehouse+Central+Hong+Kong')" style="display:inline-flex; align-items:center; gap:6px; background:#4285F4; color:white; padding:6px 12px; border-radius:6px; border:none; font-size:13px; font-weight:bold; cursor:pointer;">
+          <i class="fa-solid fa-map-location-dot"></i> 開啟地圖導航
+        </button>
       </div>
     </div>
 
@@ -95,15 +70,10 @@
       <div class="step-num" style="border-color:#FB8C00; color:#FB8C00;">3</div>
       <div class="step-content">
         <h4>17:30 - 19:15 晚餐與叮叮車體驗</h4>
-        <div class="step-info" style="margin-bottom: 6px;"><i class="fa-solid fa-train-tram"></i> 【畢打街站】上車 ➔ 前往碼頭</div>
-        <div style="display:flex; gap:6px; flex-wrap:wrap;">
-          <a href="https://www.google.com/maps/search/?api=1&query=Pedder+Street+Tram+Stop" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#4285F4; color:white; padding:4px 8px; border-radius:4px; text-decoration:none; font-size:11px; font-weight:bold;">
-            <i class="fa-solid fa-map-location-dot"></i> Google (車站)
-          </a>
-          <a href="https://uri.amap.com/marker?keywords=畢打街電車站" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#00A2FF; color:white; padding:4px 8px; border-radius:4px; text-decoration:none; font-size:11px; font-weight:bold;">
-            <i class="fa-solid fa-location-arrow"></i> 高德 (車站)
-          </a>
-        </div>
+        <div class="step-info" style="margin-bottom: 8px;"><i class="fa-solid fa-train-tram"></i> 【畢打街站】上車 ➔ 前往碼頭</div>
+        <button onclick="openMapModal('https://www.google.com/maps/search/?api=1&query=Pedder+Street+Tram+Stop', 'https://uri.amap.com/marker?keywords=畢打街電車站', 'https://maps.apple.com/?q=Pedder+Street+Tram+Stop')" style="display:inline-flex; align-items:center; gap:6px; background:#4285F4; color:white; padding:6px 12px; border-radius:6px; border:none; font-size:13px; font-weight:bold; cursor:pointer;">
+          <i class="fa-solid fa-map-location-dot"></i> 開啟地圖導航
+        </button>
       </div>
     </div>
 
@@ -112,18 +82,10 @@
       <div class="step-num" style="border-color:#E65100; color:white; background:#FB8C00;">4</div>
       <div class="step-content">
         <h4>19:30 - 20:15 維港觀光遊艇</h4>
-        <div class="step-info" style="margin-bottom: 4px;"><i class="fa-solid fa-ship" style="color:#0288D1;"></i> 中環碼頭登船 (20:00 船上賞燈光秀)</div>
-        <div style="display:flex; gap:6px; flex-wrap:wrap;">
-          <a href="https://www.google.com/maps/search/?api=1&query=Central+Pier+Hong+Kong" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#4285F4; color:white; padding:4px 8px; border-radius:4px; text-decoration:none; font-size:11px; font-weight:bold;">
-            <i class="fa-solid fa-map-location-dot"></i> Google (碼頭)
-          </a>
-          <a href="https://uri.amap.com/marker?keywords=中環碼頭" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#00A2FF; color:white; padding:4px 8px; border-radius:4px; text-decoration:none; font-size:11px; font-weight:bold;">
-            <i class="fa-solid fa-location-arrow"></i> 高德 (碼頭)
-          </a>
-          <a href="https://maps.apple.com/?q=Central+Pier+Hong+Kong" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#333333; color:white; padding:4px 8px; border-radius:4px; text-decoration:none; font-size:11px; font-weight:bold;">
-            <i class="fa-brands fa-apple"></i> Apple
-          </a>
-        </div>
+        <div class="step-info" style="margin-bottom: 8px;"><i class="fa-solid fa-ship" style="color:#0288D1;"></i> 中環碼頭登船 (20:00 賞燈光秀)</div>
+        <button onclick="openMapModal('https://www.google.com/maps/search/?api=1&query=Central+Pier+Hong+Kong', 'https://uri.amap.com/marker?keywords=中環碼頭', 'https://maps.apple.com/?q=Central+Pier+Hong+Kong')" style="display:inline-flex; align-items:center; gap:6px; background:#4285F4; color:white; padding:6px 12px; border-radius:6px; border:none; font-size:13px; font-weight:bold; cursor:pointer;">
+          <i class="fa-solid fa-map-location-dot"></i> 開啟地圖導航
+        </button>
       </div>
     </div>
   </div>
@@ -141,14 +103,60 @@
       <b>4. 過海關：</b>準備好<b>台胞證</b>，跟著指標走即可順利入境深圳！
     </p>
     
-    <!-- 羅湖口岸導航 -->
-    <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:10px;">
-      <a href="https://www.google.com/maps/search/?api=1&query=Luohu+Port+Shenzhen" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#4285F4; color:white; padding:4px 8px; border-radius:4px; text-decoration:none; font-size:11px; font-weight:bold;">
-        <i class="fa-solid fa-map-location-dot"></i> Google (羅湖)
-      </a>
-      <a href="https://uri.amap.com/marker?keywords=羅湖口岸" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#00A2FF; color:white; padding:4px 8px; border-radius:4px; text-decoration:none; font-size:11px; font-weight:bold;">
-        <i class="fa-solid fa-location-arrow"></i> 高德 (羅湖)
-      </a>
-    </div>
+    <button onclick="openMapModal('https://www.google.com/maps/search/?api=1&query=Luohu+Port+Shenzhen', 'https://uri.amap.com/marker?keywords=羅湖口岸', 'https://maps.apple.com/?q=Luohu+Port+Shenzhen')" style="display:inline-flex; align-items:center; gap:6px; background:#4285F4; color:white; padding:6px 12px; border-radius:6px; border:none; font-size:13px; font-weight:bold; cursor:pointer; margin-top:5px;">
+      <i class="fa-solid fa-map-location-dot"></i> 導航至羅湖口岸
+    </button>
   </div>
 </div>
+
+<!-- ================= 地圖彈出選擇選單 (Modal) ================= -->
+<div id="mapModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999; justify-content:center; align-items:flex-end; transition:opacity 0.3s;" onclick="closeMapModal(event)">
+  <div style="background:white; width:100%; max-width:600px; border-radius:24px 24px 0 0; padding:24px 20px 40px; box-sizing:border-box; animation: slideUp 0.3s ease-out;" onclick="event.stopPropagation()">
+    <!-- 頂部灰色拉條裝飾 -->
+    <div style="width: 40px; height: 5px; background: #E0E0E0; border-radius: 3px; margin: 0 auto 20px;"></div>
+    
+    <h3 style="margin:0 0 20px; text-align:center; font-size:18px; color:#333;">請選擇要使用的地圖 App</h3>
+    
+    <!-- Google 地圖選項 -->
+    <a id="btnGoogle" href="#" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:10px; padding:15px; background:#F8F9FA; border:1px solid #E0E0E0; border-radius:14px; margin-bottom:12px; text-decoration:none; color:#333; font-weight:bold; font-size:16px;">
+      <i class="fa-brands fa-google" style="color:#4285F4; font-size:20px;"></i> Google 地圖
+    </a>
+    
+    <!-- 高德地圖選項 -->
+    <a id="btnAmap" href="#" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:10px; padding:15px; background:#F8F9FA; border:1px solid #E0E0E0; border-radius:14px; margin-bottom:12px; text-decoration:none; color:#333; font-weight:bold; font-size:16px;">
+      <i class="fa-solid fa-location-arrow" style="color:#00A2FF; font-size:20px;"></i> 高德地圖
+    </a>
+    
+    <!-- Apple 地圖選項 -->
+    <a id="btnApple" href="#" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:10px; padding:15px; background:#F8F9FA; border:1px solid #E0E0E0; border-radius:14px; margin-bottom:24px; text-decoration:none; color:#333; font-weight:bold; font-size:16px;">
+      <i class="fa-brands fa-apple" style="color:#000; font-size:22px;"></i> Apple 地圖
+    </a>
+    
+    <!-- 取消按鈕 -->
+    <button onclick="closeMapModal(event)" style="width:100%; padding:15px; border:none; background:#EEEEEE; border-radius:14px; font-weight:bold; color:#666; font-size:16px; cursor:pointer;">取消</button>
+  </div>
+</div>
+
+<style>
+  /* 底部滑入動畫 */
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+</style>
+
+<script>
+  // 開啟彈出選單，並動態替換按鈕的網址
+  function openMapModal(googleUrl, amapUrl, appleUrl) {
+    document.getElementById('btnGoogle').href = googleUrl;
+    document.getElementById('btnAmap').href = amapUrl;
+    document.getElementById('btnApple').href = appleUrl;
+    document.getElementById('mapModal').style.display = 'flex';
+  }
+  
+  // 關閉彈出選單 (點擊背景或取消按鈕都會觸發)
+  function closeMapModal(event) {
+    document.getElementById('mapModal').style.display = 'none';
+  }
+</script>
+<!-- ================= 地圖彈出選擇選單結束 ================= -->
