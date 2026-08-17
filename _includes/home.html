@@ -1,0 +1,130 @@
+<!-- 5日天氣預報 (黃色邊框) -->
+<div class="card border-yellow">
+  <div class="card-header" style="color: #F57F17;"><i class="fa-solid fa-cloud-sun" style="color: #FFCA28;"></i> 港深五日氣象 (自動偵測)</div>
+  <div class="weather-row">
+    <div class="weather-day">
+      <span class="w-date" style="color: #F57F17;">8/31(一)</span>
+      <i class="fa-solid fa-cloud-sun w-icon" style="color: #FFC107;"></i>
+      <span class="w-temp">28-32°</span>
+      <span class="w-rain">🌧 10%</span>
+    </div>
+    <div class="weather-day">
+      <span class="w-date" style="color: #F57F17;">9/1(二)</span>
+      <i class="fa-solid fa-sun w-icon" style="color: #FF9800;"></i>
+      <span class="w-temp">28-33°</span>
+      <span class="w-rain">☀ 0%</span>
+    </div>
+    <div class="weather-day">
+      <span class="w-date" style="color: #F57F17;">9/2(三)</span>
+      <i class="fa-solid fa-cloud w-icon" style="color: #9E9E9E;"></i>
+      <span class="w-temp">27-31°</span>
+      <span class="w-rain">☁ 20%</span>
+    </div>
+    <div class="weather-day">
+      <span class="w-date" style="color: #F57F17;">9/3(四)</span>
+      <i class="fa-solid fa-cloud-showers-heavy w-icon" style="color: #64B5F6;"></i>
+      <span class="w-temp">26-30°</span>
+      <span class="w-rain">🌧 60%</span>
+    </div>
+    <div class="weather-day">
+      <span class="w-date" style="color: #F57F17;">9/4(五)</span>
+      <i class="fa-solid fa-cloud-sun w-icon" style="color: #FFC107;"></i>
+      <span class="w-temp">27-32°</span>
+      <span class="w-rain">🌧 20%</span>
+    </div>
+  </div>
+</div>
+
+<!-- 航班資訊 (紫色邊框) -->
+<div class="card border-purple">
+  <div class="card-header" style="color: #8E24AA;"><i class="fa-solid fa-plane" style="color: #BA68C8;"></i> 航班資訊</div>
+  
+  <div style="background: #F9F5FF; padding: 12px; border-radius: 10px; margin-bottom: 12px; border: 1px solid #E6E0FA;">
+    <p style="margin:0 0 6px; font-size: 15px; font-weight:bold; color:var(--primary);">✈️ 去程：8月31日 (一)</p>
+    <p style="margin:0 0 6px; font-size: 14px; font-weight:bold;">香港快運航空 (UO131)</p>
+    <p style="margin:0 0 8px; font-size: 13px; color:var(--text-main);">高雄 (KHH) <b style="font-size:15px;">10:15</b> ➔ 香港 (HKG) <b style="font-size:15px;">11:45</b></p>
+    <p style="margin:0; font-size: 12px; color:var(--accent-pink); font-weight:bold;">
+      <i class="fa-solid fa-circle-exclamation"></i> 登機報到櫃檯：A, D
+    </p>
+  </div>
+  
+  <div style="background: #FFF5F7; padding: 12px; border-radius: 10px; border: 1px solid #FFE4E1;">
+    <p style="margin:0 0 6px; font-size: 15px; font-weight:bold; color:var(--accent-pink);">✈️ 回程：9月4日 (五)</p>
+    <p style="margin:0 0 6px; font-size: 14px; font-weight:bold;">香港出發 ➔ 抵達高雄</p>
+    <p style="margin:0; font-size: 13px; color:var(--text-main);">香港 (HKG) <b style="font-size:15px;">20:40</b> ➔ 高雄 (KHH) <b style="font-size:15px;">22:10</b></p>
+  </div>
+</div>
+
+<!-- 香港機場離境退稅 (綠色邊框) -->
+<div class="card border-green">
+  <div class="card-header" style="color: #2E7D32;"><i class="fa-solid fa-money-bill-wave" style="color: #4CAF50;"></i> 退稅資訊</div>
+  <div style="background: #E8F5E9; padding: 12px; border-radius: 10px; border: 1px solid #C8E6C9;">
+    <p style="margin:0 0 4px; font-size: 14px; font-weight:bold; color: #2E7D32;">
+      飛機乘客離境稅
+    </p>
+    <a href="https://www.apdtrefund.hk/tc/" target="_blank" style="color: #1976D2; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 4px; margin-top: 4px;">
+      <i class="fa-solid fa-link"></i> 申請退稅
+    </a>
+  </div>
+</div>
+
+<!-- 💰 旅遊記帳本 (藍色邊框) -->
+<div class="card border-blue">
+  <div class="budget-title">💰 旅遊記帳本 (雙幣別)</div>
+  
+  <!-- 幣別與其他選項獨立成行，保證排版整齊不裁切 -->
+  <div class="form-group">
+    <div class="form-label">幣別 (Currency)</div>
+    <select id="currency-input" class="form-input">
+      <option value="HKD">港幣 (HK$)</option>
+      <option value="RMB">人民幣 (¥)</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <div class="form-label">金額 (Amount)</div>
+    <input type="number" id="amt-input" class="form-input" placeholder="e.g., 2500">
+  </div>
+  
+  <div class="form-group">
+    <div class="form-label">項目/內容 (Description)</div>
+    <input type="text" id="desc-input" class="form-input" placeholder="請輸入項目，如：午餐/玩具/車票">
+  </div>
+  
+  <div class="form-group">
+    <div class="form-label">日期 (Day)</div>
+    <select id="day-input" class="form-input">
+      <option value="8/31 (一)">8/31 (一) 香港</option>
+      <option value="9/1 (二)">9/1 (二) 深圳</option>
+      <option value="9/2 (三)">9/2 (三) 深圳</option>
+      <option value="9/3 (四)">9/3 (四) 深圳</option>
+      <option value="9/4 (五)">9/4 (五) 回程</option>
+    </select>
+  </div>
+
+  <button class="add-btn" onclick="addExpense()">
+    <i class="fa-solid fa-plus"></i> 記錄花費
+  </button>
+
+  <div class="summary-title">總結花費明細</div>
+  <!-- 總支出大字體顯示 -->
+  <div class="total-hkd" id="total-hkd">總支出: HK$ 0</div>
+  <div class="total-rmb" id="total-rmb">總支出: ¥ 0</div>
+
+  <table class="expense-table">
+    <thead>
+      <tr>
+        <th style="width: 30%;">日期</th>
+        <th style="width: 45%;">項目內容</th>
+        <th style="width: 25%;">金額</th>
+      </tr>
+    </thead>
+    <tbody id="expense-tbody">
+      <!-- JS 動態插入 -->
+    </tbody>
+  </table>
+
+  <button class="clear-btn" onclick="clearExpenses()">
+    <i class="fa-solid fa-triangle-exclamation"></i> 清除所有記帳資料
+  </button>
+</div>
